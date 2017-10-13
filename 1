@@ -50,3 +50,10 @@ do
 	printf "$file sanitized\n"; 
 done
 rm tmp;
+
+while read -r line
+do
+	name=$( echo $line | sed 's|.*download/|| )
+	fetch -o dump/$name $line;
+	sleep 1;
+done < "que"
