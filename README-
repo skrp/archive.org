@@ -1,6 +1,16 @@
 #######################################
 # archive.org mass scrape by collection
 
+           TWO STEPS TO SIMPLE QUE
 1) Output item identifiers of collection into que
-2) Fetch all QUE htmls to grep interested encodings into QUE
-3) FETCH QUE 
+2) Fetch all QUE htmls to grep interested encodings
+
+que > QUE
+mp4 > MP4 ...
+
+ENCODINGS:
+  MP4
+  MP3
+  PDF
+  TXT
+  META
