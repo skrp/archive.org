@@ -1,0 +1,6 @@
+#######################################
+# archive.org mass scrape by collection
+
+1) Output item identifiers of collection into que
+2) Fetch all QUE htmls to grep interested encodings into QUE
+3) FETCH QUE 
