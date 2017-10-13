@@ -6,11 +6,15 @@
 
 for f in dump/*
 do
-  grep .mp4 $f >> mp4;
-  grep .mp3 $f >> mp3;
-  grep .pdf $f >> pdf;
-  grep .txt $f >> txt;
-  grep _meta.xml $f >> meta;
+  grep .mp4 $f | sed 's/<a href="//' | sed 's/">.*//' >> mp4;
+  grep .mp3 $f | sed 's/<a href="//' | sed 's/">.*//' >> mp3;
+  grep .pdf $f | sed 's/<a href="//' | sed 's/">.*//' >> pdf;
+  grep .txt $f | sed 's/<a href="//' | sed 's/">.*//' >> txt;
+  grep .jpg $f | sed 's/<a href="//' | sed 's/">.*//' >> jpg;
+  grep .png $f | sed 's/<a href="//' | sed 's/">.*//' >> png;  
+  grep .gif $f | sed 's/<a href="//' | sed 's/">.*//' >> gif;
+  grep .tif $f | sed 's/<a href="//' | sed 's/">.*//' >> tif;
+  grep '_meta.xml' $f | sed 's/<a href="//' | sed 's/">.*//' >> meta;
 done
 
 sed 's///g' mp4 >> MP4;
