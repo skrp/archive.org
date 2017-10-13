@@ -5,12 +5,16 @@
 1) Output item identifiers of collection into que
 2) Fetch all QUE htmls to grep interested encodings
 
-que > QUE
-mp4 > MP4 ...
+que >> QUE
+mp4 >> MP4 ...
 
 ENCODINGS:
   MP4
   MP3
   PDF
   TXT
+  JPG
+  PNG
+  GIF
+  TIF
   META
