@@ -1,0 +1,20 @@
+
+#!/usr/local/bin/bash
+# FreeBSD Locals Only
+#################################################################
+# archive.org - get identifier meta htmls & scrape encoding links
+
+for f in dump/*
+do
+  grep .mp4 $f >> mp4;
+  grep .mp3 $f >> mp3;
+  grep .pdf $f >> pdf;
+  grep .txt $f >> txt;
+  grep _meta.xml $f >> meta;
+done
+
+sed 's///g' mp4 >> MP4;
+sed 's///g' mp3 >> MP3;
+sed 's///g' pdf >> PDF;
+sed 's///g' txt >> TXT;
+sed 's///g' meta >> META;
