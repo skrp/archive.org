@@ -1,0 +1,52 @@
+#!/usr/local/bin/perl
+# FreeBSD Locals Only
+###############################################################
+# archive.org identifier metadata html scrape entire collection
+
+# cursor api allows stepped requests from the server to 
+# get around only serving 10k identifier requests at a time
+# each raw dump named after count
+
+# collection example: americana
+printf "USAGE: ARG1 collection";
+collection=$1 # refer to archive.org
+count=0
+# TYPE SPECIFIED
+#type=$2 # refer to archive.org
+
+# INITIATE #########################################
+# necessary to get first cursor
+url='https://archive.org/services/search/v1/scrape?debug=false&total_only=false&count=10000&fields=identifier&q=collection%3A('$collection')%20'
+fetch -o $count $url;
+cursor=$( sed 's/.*"cursor":"//' 0 | sed 's/".*//' )
+((count++))
+
+total=$( sed 's/.*","total"://' 0 | sed 's/}//' )
+reps=$((total / 10000))
+((reps++))
+
+# FETCH IDENIFIERS ################################
+while [ $count -lt $reps ]
+do
+	printf "$count $cursor\n";
+	iurl='https://archive.org/services/search/v1/scrape?debug=false&total_only=false&count=10000&fields=identifier&q=collection%3A('$collection')%20&cursor='$cursor;
+	fetch -o $count $iurl;
+	cursor=$( sed 's/.*"cursor":"//' $count | sed 's/","previous.*//')
+	((count++));
+done
+# SANITIZE IDENTIFIERS #############################
+((count--)); # remove trailing ++
+for ((file=0; file<=$count; file++))
+do
+	sed 's/.*\[//' $file | sed 's/\].*//' | sed 's/"identifier"//g' | sed 's/[{}":]//g' | tr , '\n' >> tmp;
+	sed 's|^|https://archive.org/download/|' tmp > que;
+	printf "$file sanitized\n"; 
+done
+rm tmp;
+# FETCH METADATA ###################################
+while read -r line
+do
+	name=$( echo $line | sed 's|.*download/|| )
+	fetch -o dump/$name $line;
+	sleep 1;
+done < "que"
