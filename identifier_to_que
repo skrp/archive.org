@@ -8,22 +8,41 @@
 # each raw dump named after count
 
 # collection example: americana
-printf "USAGE: ARG1 collection";
-collection=$1 # refer to archive.org
-count=0
-# TYPE SPECIFIED
-#type=$2 # refer to archive.org
+my ($collection) = @ARGV;
+if ( not defined $collection ) { die "usage: ARG1 collection from archive.org"; }
 
-# INITIATE #########################################
-# necessary to get first cursor
-url='https://archive.org/services/search/v1/scrape?debug=false&total_only=false&count=10000&fields=identifier&q=collection%3A('$collection')%20'
-fetch -o $count $url;
-cursor=$( sed 's/.*"cursor":"//' 0 | sed 's/".*//' )
-((count++))
+my $url='https://archive.org/services/search/v1/scrape?debug=false&total_only=false&count=10000&fields=identifier&q=collection%3A('.$collection.')%20';
 
-total=$( sed 's/.*","total"://' 0 | sed 's/}//' )
-reps=$((total / 10000))
-((reps++))
+my $count = 0;
+get($url, $count);
+
+open(my $tfh, '<', '0');
+my @lines = readline $tfh; 
+close $tfh; chomp @lines;
+
+my $cursor = @lines[0];
+$cursor =~ s?.*\"cursor\":\"??;
+$cursor =~ s?".*??;
+
+my $total = @lines[0];
+my $total =~ s?.*","total":??;
+$total =~ s?}??;
+my $reps = $total / 10000;
+
+$count++;
+$reps++;
+while ($count < $reps)
+{
+	print "$count $cursor\n";
+	my $iurl = 'https://archive.org/services/search/v1/scrape?debug=false&total_only=false&count=10000&fields=identifier&q=collection%3A('.$collection.')%20&cursor='.$cursor;
+	get($iurl, $count);
+	
+# SUBS #####################################################
+sub get
+{
+	my ($i, $count) = @_;
+	my $response = $UA->get($i, ':content_file'=>"$count");
+}
 
 # FETCH IDENIFIERS ################################
 while [ $count -lt $reps ]
