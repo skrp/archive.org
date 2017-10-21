@@ -6,3 +6,10 @@
 my ($dump) = @ARGV;
 if (not defined $dump) { die ('arg1 dump dir'); }
 if (substr($dump, -1) ne "/") { $dump .= '/'; }
+
+my $url0 = 'https://archive.org/download/';
+my (@txt, @mp4, @pdf, @jpg, @tif, @mp3, @gif, @meta, @png); 
+
+opendir(my $DH, $dump);
+my @dir = <$DH>;
+for my $file (@dir)
