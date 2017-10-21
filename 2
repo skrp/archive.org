@@ -15,7 +15,8 @@ my @dir = <$DH>;
 for my $file (@dir)
 {
 	my $link = $_;
-	$link =~ s?<a href="??; $link =~ s?">.*??;
+	$link =~ s?<a href="??; 
+	$link =~ s?">.*??;
 	if (/\.txt/ $link)
 		{ my $url3 = $url.$file.'/'.$link.'\n'; push @txt, $url3; }
 	if (/\.mp4/ $link)
