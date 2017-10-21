@@ -4,21 +4,3 @@
 #################################################################
 # archive.org - get identifier meta htmls & scrape encoding links
 
-for f in dump/*
-do
-  grep .mp4 $f | sed 's/<a href="//' | sed 's/">.*//' >> mp4;
-  grep .mp3 $f | sed 's/<a href="//' | sed 's/">.*//' >> mp3;
-  grep .pdf $f | sed 's/<a href="//' | sed 's/">.*//' >> pdf;
-  grep .txt $f | sed 's/<a href="//' | sed 's/">.*//' >> txt;
-  grep .jpg $f | sed 's/<a href="//' | sed 's/">.*//' >> jpg;
-  grep .png $f | sed 's/<a href="//' | sed 's/">.*//' >> png;  
-  grep .gif $f | sed 's/<a href="//' | sed 's/">.*//' >> gif;
-  grep .tif $f | sed 's/<a href="//' | sed 's/">.*//' >> tif;
-  grep '_meta.xml' $f | sed 's/<a href="//' | sed 's/">.*//' >> meta;
-done
-
-sed 's///g' mp4 >> MP4;
-sed 's///g' mp3 >> MP3;
-sed 's///g' pdf >> PDF;
-sed 's///g' txt >> TXT;
-sed 's///g' meta >> META;
