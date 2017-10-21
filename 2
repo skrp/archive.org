@@ -13,3 +13,7 @@ my (@txt, @mp4, @pdf, @jpg, @tif, @mp3, @gif, @meta, @png);
 opendir(my $DH, $dump);
 my @dir = <$DH>;
 for my $file (@dir)
+{
+	my $link = $_;
+	$link =~ s?<a href="??; $link =~ s?">.*??;
+		
