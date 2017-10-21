@@ -3,4 +3,6 @@
 # FreeBSD Locals Only
 #################################################################
 # archive.org - get identifier meta htmls & scrape encoding links
-
+my ($dump) = @ARGV;
+if (not defined $dump) { die ('arg1 dump dir'); }
+if (substr($dump, -1) ne "/") { $dump .= '/'; }
