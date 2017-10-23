@@ -37,3 +37,23 @@ for my $file (@dir)
 			{ my $url3 = $url.$file.'/'.$link; push @png, $url3; }
 		if (/_meta\.xml/ $link)
 			{ my $url3 = $url.$file.'/'.$link; push @meta, $url3; }
+	}
+}	
+open ($txtfh, <, 'txt');
+print $fh @txt;
+open ($mp4fh, <, 'mp4');
+print $mp4fh @mp4;
+open ($mp3fh, <, 'mp3');
+print $mp3fh @mp3;
+open ($jpgfh, <, 'jpg');
+print $jpgfh @jpg;
+open ($pngfh, <, 'png');
+print $pngfh @png;
+open ($pdffh, <, 'pdf');
+print $pdffh @pdf;
+open ($tiffh, <, 'tif');
+print $tiffh @tif;
+open ($giffh, <, 'gif');
+print $giffh @gif;
+open ($metafh, <, 'meta');
+print $metafh @meta;
