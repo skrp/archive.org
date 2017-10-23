@@ -1,8 +1,7 @@
 #!/usr/local/bin/perl
 use strict; use warnings;
-# FreeBSD Locals Only
-#################################################################
-# archive.org - get identifier meta htmls & scrape encoding links
+#########################
+
 my ($dir, $dump) = @ARGV;
 
 my $url0 = 'https://archive.org/download/';
@@ -12,7 +11,7 @@ opendir(my $DH, $dir);
 my @dir = <$DH>;
 for my $file (@dir)
 {
-  open($ifh, '<', "$dump$file");
+	open($ifh, '<', "$dump$file");
 	my @i = <$ifh>;
 	for (@i)
 	{
@@ -57,3 +56,4 @@ open ($giffh, <, 'gif');
 print $giffh @gif;
 open ($metafh, <, 'meta');
 print $metafh @meta;
+	
