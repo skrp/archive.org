@@ -12,3 +12,10 @@ opendir(my $DH, $dir);
 my @dir = <$DH>;
 for my $file (@dir)
 {
+  open($ifh, '<', "$dump$file");
+	my @i = <$ifh>;
+	for (@i)
+	{
+		my $link = $_;
+		$link =~ s?<a href="??; $link =~ s?">.*??;
+		
