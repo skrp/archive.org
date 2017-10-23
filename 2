@@ -19,3 +19,21 @@ for my $file (@dir)
 		my $link = $_;
 		$link =~ s?<a href="??; $link =~ s?">.*??;
 		
+		if (/\.txt/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @txt, $url3; }
+		if (/\.mp4/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @mp4, $url3; }
+		if (/\.pdf/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @pdf, $url3; }
+		if (/\.jpg/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @jpg, $url3; }
+		if (/\.tif/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @mp3, $url3; }
+		if (/\.gif/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @gif, $url3; }
+		if (/\.tif/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @tif, $url3; }
+		if (/\.png/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @png, $url3; }
+		if (/_meta\.xml/ $link)
+			{ my $url3 = $url.$file.'/'.$link; push @meta, $url3; }
