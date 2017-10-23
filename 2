@@ -3,3 +3,12 @@ use strict; use warnings;
 # FreeBSD Locals Only
 #################################################################
 # archive.org - get identifier meta htmls & scrape encoding links
+my ($dir, $dump) = @ARGV;
+
+my $url0 = 'https://archive.org/download/';
+my (@txt, @mp4, @pdf, @jpg, @tif, @mp3, @gif, @meta, @png); 
+
+opendir(my $DH, $dir);
+my @dir = <$DH>;
+for my $file (@dir)
+{
