@@ -2,11 +2,17 @@
 # archive.org mass scrape by collection
 
            TWO STEPS TO SIMPLE QUE
-1) Output item identifiers of collection into que
-2) Fetch all QUE htmls to grep interested encodings
+(( feeds 'get' api     https://raw.githubusercontent.com/skrp/HIVE/master/DEMON ))
 
-que >> QUE
-mp4 >> MP4 ...
+
+# 1 ###################################
+Output item identifiers of collection into que
+
+# 2 ###################################
+[A - Fetch all identifier htmls ]  
+[B - grep interested encodings ]
+[C - output download links by encoding ]
+
 
 ENCODINGS:
   MP4
