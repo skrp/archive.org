@@ -1,18 +1,12 @@
 #######################################
 # archive.org mass scrape by collection
-
            TWO STEPS TO SIMPLE QUE
-(( feeds 'get' api     https://raw.githubusercontent.com/skrp/HIVE/master/DEMON ))
-
-
 # 1 ###################################
 Output item identifiers of collection into que
-
 # 2 ###################################
 [A - Fetch all identifier htmls ]  
 [B - grep interested encodings ]
 [C - output download links by encoding ]
-
 
 ENCODINGS:
   MP4
@@ -24,3 +18,5 @@ ENCODINGS:
   GIF
   TIF
   META
+
+(( feeds 'get' api     https://raw.githubusercontent.com/skrp/HIVE/master/DEMON ))
